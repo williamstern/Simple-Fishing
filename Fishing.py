@@ -35,16 +35,18 @@ class Fishing(object):
             print('1', end = '\r')
             time.sleep(1)
             print('GO!', end = '\r')
+            time.sleep(1)
+            endTime = time.time() + (4 * 60)
 
    
     def random_fish(self):
         '''Randomly selects a type of fish and gives a point value'''
         # Here are some fish with point value
-        fish = {"Bluegill": 2,
-                "Largemouth Bass": 5,
-                "Smallmouth Bass": 4,
+        fish = {"Bluegill": 12,
+                "Largemouth Bass": 16,
+                "Smallmouth Bass": 14,
                 "Tuna": 25,
-                "Minno": 1,
+                "Minno": 0,
                 "Lionfish": -25,
                 "Gar": 26,
                 "Electric Eel": -28}
@@ -58,9 +60,39 @@ class Fishing(object):
         random_fish_data = [random_fish_key, random_fish_value]
         # Adds the fish key and value to the log
         self.fishinglog.update({random_fish_key: random_fish_value})
-        
         return random_fish_data
+    
+    def chance_of_catch(self, fish_value):
+        time.sleep(2)
+        # Makes the value positive and then makes it 4 times more likely
+        chance = random.randomint(0, (abs(fish_value) // 4))
+        if chance == 0: # Caught
+            return True
+        else: # Not 
+            time.sleep(4)
+            return False
+            
+    def catching(self):
+        canCast = True
+        while canCast = True:
+            input("Press Enter to cast!")
+                time.sleep(random.randomint(1,15))
+                if self.chance_of_catch == True:
+                    reeling = input("Quick! Press Enter to reel the fish in!")
+                    if reeling == None:
+                        print("Oh No! It got away!"
+                        time.sleep(1)
+                    else:
+                        print("You cought a", random_fish_data[0], "worth", random_fish_data[1], "points.")
+                        time.sleep(1.4)
+            if time.time() >= endtime:
+                canCast = False
+                print("Your final score is", sum(fish.values()))
+                time.sleep(5)
+            
         
+endtime = 0        
+random_fish_data = []
 foo = Fishing()
 foo.setup()
 
